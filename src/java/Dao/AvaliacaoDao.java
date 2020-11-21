@@ -9,7 +9,6 @@ package Dao;
 import Model.Avaliacao;
 import java.io.IOException;
 import java.sql.SQLException;
-import org.hsqldb.cmdline.SqlToolError;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -34,7 +33,6 @@ public class AvaliacaoDao {
      * @return 
      * @throws java.sql.SQLException
      * @throws java.io.IOException
-     * @throws org.hsqldb.cmdline.SqlToolError
      */
     
     private _DBConnector database;
@@ -44,7 +42,7 @@ public class AvaliacaoDao {
         try {
             database = new _DBConnector();
             connection = database.connect();
-        } catch (SQLException | IOException | SqlToolError ex) {
+        } catch (SQLException | IOException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

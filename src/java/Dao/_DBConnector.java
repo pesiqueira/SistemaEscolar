@@ -17,9 +17,6 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.hsqldb.cmdline.SqlFile;
-import org.hsqldb.cmdline.SqlToolError;
-
 /**
  *
  * @author John
@@ -28,7 +25,7 @@ public final class _DBConnector{
     String urlDB = "jdbc:mysql://localhost/?user=root&password=12345678&useSSL=false&allowPublicKeyRetrieval=true";
     static boolean dbCreated = false;
     
-    public _DBConnector() throws SQLException, IOException, SqlToolError{
+    public _DBConnector() throws SQLException, IOException{
         if(!dbCreated){
             this.loadDB();
             this.createUsersDB();   
@@ -58,7 +55,7 @@ public final class _DBConnector{
     }
     
     
-    public void loadDB() throws SQLException, IOException, SqlToolError {
+    public void loadDB() throws SQLException, IOException {
         Connection connection = connect();
         String sql1 = "CREATE SCHEMA IF NOT EXISTS `av1_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;";
 
@@ -180,7 +177,7 @@ public final class _DBConnector{
         System.out.println("Banco de dados criado.");
     }
     
-    public void createUsersDB() throws SQLException, IOException, SqlToolError {
+    public void createUsersDB() throws SQLException, IOException {
         String sql1 = "use av1_db; ";
 
         String sql2 = "create user if not exists 'dev'@'localhost' identified by 'senha';";
