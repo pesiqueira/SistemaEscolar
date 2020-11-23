@@ -27,10 +27,10 @@ public class LoginController {
     }
     
     public String validarUsuario(){
-        UsuarioDao usrDao = new UsuarioDao();
-        usuarioObj = usrDao.getUsuario(usuario);
         if("admin".equals(usuario) && "admin".equals(usuario))
             return "valido";
+        UsuarioDao usrDao = new UsuarioDao();
+        usuarioObj = usrDao.getUsuario(usuario);
         if(usuarioObj.isValid()){
             if(usuarioObj.getSenha().equals(senha)){
                 return "valido";
@@ -45,6 +45,8 @@ public class LoginController {
     }
     
     public String getUserType(){
+        if("admin".equals(usuario))
+            return "professor";
         UsuarioDao usrDao = new UsuarioDao();
         usuarioObj = usrDao.getUsuario(usuario);
         if(usuarioObj.getTipo()==1 || "admin".equals(usuario)){

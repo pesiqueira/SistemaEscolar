@@ -48,9 +48,9 @@ public class AlunosDao {
     }
     
     public List<Aluno> getAlunos()throws SQLException{
-        String query = "select * from aluno";
+        String query = "select * from av1_db.aluno";
         
-        database.setDB("av1_db");
+//        database.setDB("av1_db");
         connection = database.connect();
         
         List<Aluno> alunos = new ArrayList<>();
@@ -63,7 +63,6 @@ public class AlunosDao {
             aluno.setAlunoNome(result.getString("ALUNO_NOME"));
             aluno.setMatricula(result.getString("MATRICULA"));
             aluno.setIdCurso(result.getString("CURSO_idCURSO"));
-            aluno.setIdUsuario(result.getString("idUSUARIO"));
             alunos.add(aluno);
         }
         connection.close();
@@ -93,8 +92,8 @@ public class AlunosDao {
         }
     }
     
-    public int createAluno(String matricula, String nome, String idCurso, String idUsuario){
-        String query = "INSERT INTO `ALUNO` (`MATRICULA`, `ALUNO_NOME`, `CURSO_idCURSO`, `idusuario`) VALUES(?, ?, ?,?);";
+    public int createAluno(String matricula, String nome, String idCurso){
+        String query = "INSERT INTO `ALUNO` (`MATRICULA`, `ALUNO_NOME`, `CURSO_idCURSO`) VALUES(?, ?, ?);";
         try{
             database.setDB("av1_db");
             connection = database.connect();
@@ -102,7 +101,6 @@ public class AlunosDao {
             stmnt.setString(1, matricula);
             stmnt.setString(2, nome);
             stmnt.setString(3, idCurso);
-            stmnt.setString(4, idUsuario);
             
             int result = stmnt.executeUpdate();
             connection.close();

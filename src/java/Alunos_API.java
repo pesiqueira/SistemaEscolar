@@ -71,7 +71,7 @@ public class Alunos_API extends HttpServlet {
         Aluno aluno = new Gson().fromJson(request.getReader(), Aluno.class);
         PrintWriter out = response.getWriter();
         
-        int resDao = alunosDao.createAluno(aluno.getMatricula(), aluno.getAlunoNome(), aluno.getIdCurso(), aluno.getIdUsuario());
+        int resDao = alunosDao.createAluno(aluno.getMatricula(), aluno.getAlunoNome(), aluno.getIdCurso());
         if(resDao>0){
             out.print(200);
         }else{

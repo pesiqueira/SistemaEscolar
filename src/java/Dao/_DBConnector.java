@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
@@ -22,13 +23,18 @@ import java.util.logging.Logger;
  * @author John
  */
 public final class _DBConnector{
-    String urlDB = "jdbc:mysql://localhost/?user=root&password=12345678&useSSL=false&allowPublicKeyRetrieval=true";
+    static final String usuario = "root";
+    static final String senha = "12345678";
+    String urlDB = "jdbc:mysql://localhost/?user="+usuario+"&password="+senha+"&useSSL=false&allowPublicKeyRetrieval=true";
     static boolean dbCreated = false;
+    
     
     public _DBConnector() throws SQLException, IOException{
         if(!dbCreated){
             this.loadDB();
-            this.createUsersDB();   
+            this.createUsersDB();  
+            if(!isDisciplinasCriadas())
+                createDisciplinas();
         }
         dbCreated = true;
     }
@@ -45,8 +51,8 @@ public final class _DBConnector{
         return connection;
     }
     
-    public void setDB(String dbName) throws SQLException{
-        this.urlDB = "jdbc:mysql://localhost/" + dbName + "?user=root&password=12345678&useSSL=false&allowPublicKeyRetrieval=true";
+    public void setDB(String dbName){
+        this.urlDB = "jdbc:mysql://localhost/" + dbName + "?user="+usuario+"&password="+senha+"&useSSL=false&allowPublicKeyRetrieval=true";
     }
     
     public void disconnect() throws SQLException {   
@@ -221,4 +227,42 @@ public final class _DBConnector{
         
         System.out.println("Usuários criados.");        
     }
+    
+    public void createDisciplinas() throws SQLException{
+        
+        String sql1 = ""
+        + "INSERT INTO av1_db.`DISCIPLINA` (`idDISCIPLINA`, `DISCIPLINA_NOME`) VALUES ('1', 'Algoritmos I'), ('2', 'Raciocínio lógico'), ('3', 'Algoritmos I'), ('4', 'Introdução a programação'), ('5', 'Algoritmos II'), ('6', 'Arquitetura de computadores'), ('7', 'Lógica matemática'), ('8', 'Programação estruturada'), ('9', 'Estatística'), ('10', 'Banco de dados I');"
+        + "";
+
+        String sql2 = ""
+        + "INSERT INTO av1_db.`CURSO` (`idCURSO`, `NOME_CURSO`) VALUES( '1', 'ADS'),( '2', 'CC'),( '3', 'ENC');"
+        + "";
+        
+        Connection connection = connect();
+        Statement stmnt = connection.createStatement();
+        
+        stmnt.executeUpdate(sql1);
+        stmnt.executeUpdate(sql2);
+        
+        System.out.println("Cursos e Disciplinas criados.");  
+        
+    }
+    
+    public boolean isDisciplinasCriadas() throws SQLException{
+        String sql = "select * from av1_db.disciplina";
+        int i=0;
+        Connection connection = connect();
+        Statement stmnt = connection.createStatement();
+        
+        ResultSet result = stmnt.executeQuery(sql);
+        
+        while(result.next()){
+            System.out.print(i);
+            i++;
+        }
+        
+        return i>0;
+        
+    }
+    
 }
