@@ -49,15 +49,15 @@
             <div id="chart3" style="width: 12rem;height: 12rem;" class="col"></div>
             <div id="chart4" style="width: 12rem;height: 12rem;" class="col"></div>
         </div>-->
-        <div class="row">
+        <div class="row mt-5">
             <div class="col">
                 <div class="input-group mb-3">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" data-toggle="modal" data-target="#AddAluno">+</button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Nome do Aluno" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input id="input-search" onchange="inputChange()" type="text" class="form-control" placeholder="Nome do Aluno" aria-label="Recipient's username" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Pesquisar</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="searchAluno()" id="button-search">Pesquisar</button>
                     </div>
                   </div>
             </div>

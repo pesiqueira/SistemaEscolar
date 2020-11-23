@@ -5,7 +5,7 @@
  */
 function addAlunoRow(aluno){
     $('#table-alunos-body').append(''+
-        '<tr>'+
+        '<tr inf='+ aluno.nome+'>'+
             '<th scope="row">'+aluno.index+'</th>'+
             '<td>'+aluno.nome+'</td><td>'+(aluno.nota1)+'</td><td>'+(aluno.nota2)+'</td><td>'+aluno.nota3+'</td><td>'+ Math.min((aluno.nota1),(aluno.nota2),aluno.nota3) +'</td><td>'+Math.max((aluno.nota1),(aluno.nota2),aluno.nota3)+'</td><td>'+ aluno.media+'</td>'+
             `<td>
@@ -22,6 +22,23 @@ function addAlunoRow(aluno){
                 </button>
             </td>
         </tr>`);
+}
+
+function searchAluno(){
+    let trs = $('tr');
+    let searchValue = $('#input-search').val();
+    for(let i=0; i < trs.length; i++){
+        const element = trs[i];
+        $(element).show();
+        let infAluno = $(element).attr('inf');
+        if(infAluno && infAluno.indexOf(searchValue)<0){
+            $(element).hide();
+        }
+    }
+}
+
+function inputChange(){
+    searchAluno();
 }
 
 function fillModalAluno(aluno){    

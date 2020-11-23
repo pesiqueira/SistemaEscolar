@@ -53,6 +53,11 @@
                 </form>
             </div>
         </div>
+        <div class="row text-center">
+            <div class="col mt-5">
+                <h1>Leia o readme</h1>
+            </div>
+        </div>
     </div>
 </body>
 </html>
