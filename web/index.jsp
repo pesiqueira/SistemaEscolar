@@ -30,7 +30,7 @@
     <div class="container">
         <div class="row text-right">
             <div class="col-8 border offset-2 mt-5">
-                <form class="m-4">
+                <form class="m-4" action="login" method="post">
                     <div class="row border-bottom mb-2 text-center">
                         <h2 class="col">
                             Acesso ao Sistema
@@ -39,13 +39,13 @@
                     <div class="form-group row">
                       <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="staticEmail" >
+                          <input type="text" class="form-control" id="staticEmail" name="login" >
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                       <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword">
+                          <input type="password" class="form-control" id="inputPassword" name="senha">
                       </div>
                     </div>
                     <button type="cancel" class="btn btn-secondary mb-2">Cancel</button>

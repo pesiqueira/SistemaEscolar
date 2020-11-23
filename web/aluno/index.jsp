@@ -8,6 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="index.js"></script>
     <title>Aluno</title>
 </head>
 <body>
@@ -17,8 +19,15 @@
                 Home Page
             </button>
         </div>
-        <div class="col-1 offset-9">
+        <div class="col-1 offset-8">
             Aluno
+        </div>
+        <div class="col-1">
+            <a href="/SistemaEscolar">
+                <button type="button" class="btn btn-primary">
+                    Log out
+                </button>
+            </a>
         </div>
     </header>
     <div id="main-page" class="container">
@@ -36,13 +45,13 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Matéria</th>
+                <th scope="col">Materia</th>
                 <th scope="col">Av1</th>
                 <th scope="col">Av2</th>
                 <th scope="col">Av3</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="table-notas">
                 <tr>
                     <th scope="row">1</th>
                     <td>Engenharia de Requisitos</td><td>7</td><td>8</td><td>10</td>

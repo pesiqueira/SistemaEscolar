@@ -93,8 +93,8 @@ public class AlunosDao {
         }
     }
     
-    public int createAluno(String matricula, String nome, String idCurso){
-        String query = "INSERT INTO `ALUNO` (`MATRICULA`, `ALUNO_NOME`, `CURSO_idCURSO`) VALUES(?, ?, ?);";
+    public int createAluno(String matricula, String nome, String idCurso, String idUsuario){
+        String query = "INSERT INTO `ALUNO` (`MATRICULA`, `ALUNO_NOME`, `CURSO_idCURSO`, `idusuario`) VALUES(?, ?, ?,?);";
         try{
             database.setDB("av1_db");
             connection = database.connect();
@@ -102,6 +102,7 @@ public class AlunosDao {
             stmnt.setString(1, matricula);
             stmnt.setString(2, nome);
             stmnt.setString(3, idCurso);
+            stmnt.setString(4, idUsuario);
             
             int result = stmnt.executeUpdate();
             connection.close();

@@ -12,7 +12,7 @@ package Model;
 public class Usuario {
     private int id;
     private String nome;
-    private String login;
+    private String login="";
     private String senha;
     private int tipo;
 

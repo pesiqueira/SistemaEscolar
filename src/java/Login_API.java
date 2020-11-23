@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.google.gson.Gson;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,24 +38,6 @@ public class Login_API extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UsuarioDao usuarioDao = new UsuarioDao();
-        List<Usuario> usuarios;
-        PrintWriter out = response.getWriter();
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
-        Gson g = new Gson();
-        if(login==null){
-            try {
-                usuarios = usuarioDao.getUsuarios();
-                out.println(g.toJson(usuarios));
-            } catch (SQLException ex) {
-                Logger.getLogger(Login_API.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            LoginController controller = new LoginController(login,senha);
-            String usuarioValido = controller.validarUsuario();
-            out.println(usuarioValido);
-        }
     }
 
     /**
@@ -67,6 +51,25 @@ public class Login_API extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        PrintWriter out = response.getWriter();
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        if(login==null){
+            out.println("Invalid Login or password");
+        }else{
+            LoginController controller = new LoginController(login,senha);
+            String usuarioValido = controller.validarUsuario();
+            if("valido".equals(usuarioValido)){
+                HttpSession sessao = request.getSession();
+                String userType = controller.getUserType();
+                Cookie cookie = new Cookie("login",login);
+                sessao.setAttribute("usuarioValido", usuarioValido);
+                sessao.setAttribute("usuarioTipo", userType);
+                response.addCookie(cookie);
+                response.sendRedirect(userType+"/index.jsp");
+            }else{
+                out.println("Invalid Login or password");
+            }
+        }
     }
 }
